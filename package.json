@@ -11,7 +11,8 @@
   "type": "commonjs",
   "private":"true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx webpack --mode development",
+    "build": "npx webpack --mode production"
   },
   "devDependencies": {
     "webpack": "^5.102.1",
