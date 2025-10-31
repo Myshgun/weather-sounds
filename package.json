@@ -9,7 +9,7 @@
   "license": "ISC",
   "author": "michael",
   "type": "commonjs",
-  "main": "index.js",
+  "private":"true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
