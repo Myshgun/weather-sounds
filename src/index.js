@@ -7,24 +7,27 @@ const ICON = {
 };
 
 const mainBox = document.querySelector("#app");
+const audioManager = document.createElement("div");
+audioManager.className = "audio-manager";
+mainBox.append(audioManager);
 
 const summerBox = document.createElement("div");
 summerBox.classList.add("audio-box", "summer");
 summerBox.style.backgroundImage = "url('./assets/summer-bg.jpg')";
 summerBox.innerHTML = `<img src=${ICON.summer} />`;
-mainBox.appendChild(summerBox);
+audioManager.appendChild(summerBox);
 
 const rainyBox = document.createElement("div");
 rainyBox.classList.add("audio-box", "rainy");
 rainyBox.style.backgroundImage = "url('./assets/rainy-bg.jpg')";
 rainyBox.innerHTML = `<img src=${ICON.rainy} />`;
-mainBox.appendChild(rainyBox);
+audioManager.appendChild(rainyBox);
 
 const winterBox = document.createElement("div");
 winterBox.classList.add("audio-box", "winter");
 winterBox.style.backgroundImage = "url('./assets/winter-bg.jpg')";
 winterBox.innerHTML = `<img src=${ICON.winter} />`;
-mainBox.appendChild(winterBox);
+audioManager.appendChild(winterBox);
 
 let activeAudio = null;
 let currentPlayingUrl = null;
@@ -77,4 +80,14 @@ mainBox.addEventListener("click", (event) => {
     default:
       break;
   }
+});
+
+const volumeControl = document.createElement("div");
+volumeControl.className = "volume-control";
+volumeControl.innerHTML = `<input type="range" id="volume" min="0" max="100" value="50" />`;
+
+mainBox.append(volumeControl);
+
+volumeControl.addEventListener("input", (event) => {
+  activeAudio.volume = event.target.value / 100;
 });
