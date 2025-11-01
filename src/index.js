@@ -19,3 +19,46 @@ winterBox.classList.add("audio-box", "winter");
 winterBox.style.backgroundImage = "url('./assets/winter-bg.jpg')";
 winterBox.innerHTML = `<img src="./assets/icons/cloud-snow.svg" />`;
 mainBox.appendChild(winterBox);
+
+let activeAudio = null;
+let currentPlayingUrl = null;
+
+function playAudio(audioUrl) {
+  if (currentPlayingUrl !== audioUrl) {
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+    }
+
+    fetch(audioUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const audioUrl = URL.createObjectURL(blob);
+        activeAudio = new Audio(audioUrl);
+        activeAudio.play();
+      });
+    currentPlayingUrl = audioUrl;
+  } else {
+    if (activeAudio.paused) {
+      activeAudio.play();
+    } else {
+      activeAudio.pause();
+    }
+  }
+}
+
+mainBox.addEventListener("click", (event) => {
+  switch (event.target.closest(".audio-box")) {
+    case summerBox:
+      playAudio("./assets/sounds/summer.mp3");
+      break;
+    case rainyBox:
+      playAudio("./assets/sounds/rain.mp3");
+      break;
+    case winterBox:
+      playAudio("./assets/sounds/winter.mp3");
+      break;
+    default:
+      break;
+  }
+});
