@@ -19,3 +19,26 @@ h1 {
   text-align: center;
   color: #ed7138;
 }
+
+main {
+  display: flex;
+  justify-content: space-between;
+  max-width: 420px;
+  margin: 1rem auto;
+}
+
+.audio-box {
+  width: 130px;
+  height: 130px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-box img {
+  width: 25%;
+}
