@@ -6,11 +6,14 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
-  entry: "./index.js",
+  entry: "./index.ts",
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -21,9 +24,6 @@ module.exports = {
         {
           from: path.resolve(__dirname, "public/favicon.png"),
           to: path.resolve(__dirname, "dist"),
-        },
-        {
-          from: path.resolve(__dirname, "public"),
         },
       ],
     }),
@@ -68,6 +68,11 @@ module.exports = {
       {
         test: /\.(mp3|wav|ogg)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.[tj]sx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
     ],
   },
