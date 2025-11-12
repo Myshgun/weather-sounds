@@ -8,6 +8,7 @@
   ],
   "license": "ISC",
   "author": "michael",
+  "type": "commonjs",
   "private": "true",
   "scripts": {
     "start": "npx webpack serve --config webpack.config.dev.js",
